@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+bool hasPairWithSum(int arr[], int n, int X) {
+    int hashSet[10000] = {0}; 
+    for (int i = 0; i < n; ++i) {
+        int complement = X - arr[i];
+        if (hashSet[complement + 5000] == 1) {
+            return true;
+    }
+        hashSet[arr[i] + 5000] = 1;
+    }
+    return false;
+}
+int main() {
+    int arr[] = {1, 4, 7, 9, 3, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int X = 12;
+
+    if (hasPairWithSum(arr, n, X)) {
+        printf("Yes, there exist two elements with sum %d\n", X);
+    } else {
+        printf("No, there are no two elements with sum %d\n", X);
+    }
+
+    return 0;
+}
